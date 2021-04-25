@@ -16,8 +16,10 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
+          install-command: yarn --frozen-lockfile
           start: yarn dev
           wait-on: 'http://localhost:3000/'
-          command-prefix: 'percy exec -- yarn cypress:run'
+          command-prefix: 'percy exec --'
+          command: yarn cypress:run
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
